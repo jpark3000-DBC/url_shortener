@@ -4,8 +4,12 @@ get '/' do
 end
 
 post '/urls' do
-  Url.create_url(params[:long_url])
-  redirect to('/')
+  u = Url.create_url(params[:long_url])
+  if u.valid?
+    redirect to('/')
+  else
+    erb :error
+  end
 end
 
 get '/:short_urls' do |short|
