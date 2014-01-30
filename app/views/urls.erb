@@ -8,9 +8,9 @@
 
   <% if @short_urls %>
     <% @short_urls.each do |url| %>
-      <p><%= url.long %> --- http://localhost:9393/<%= url.short %> --- count: <%= url.count %></p>
+      <p><%= url.long %> --- http://localhost:9393/a/<%= url.short %> --- count: <%= url.count %></p>
     <% end %>
   <% end %>
 
-
+  <div><p><a href="/abc">Login/Sign up</a></p></div>
 </div>

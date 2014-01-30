@@ -1,17 +1,18 @@
 require 'securerandom'
-require 'URI'
+# require 'URI'
 
-class Url < ActiveRecord::Base
+class Address < ActiveRecord::Base
+  belongs_to :user
 
   validates :long, uniqueness: true, presence: true, format: { with: URI::regexp(%w(http https)) }
 
-  def self.create_url(long_url)
+  def self.create_url(long_url, id)
     short = SecureRandom.hex(2)
-    Url.create(long: long_url, short: short)
+    Address.create(long: long_url, short: short, user_id: id)
   end
 
   def self.get_short(short)
-    url = Url.where(short: short)[0]
+    url = Address.where(short: short)[0]
     url.count += 1
     url.save
     url.long
